@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../constants/colors.dart';
-import '../constants/text_styles.dart';
-import '../widgets/custom_button.dart';
-import 'home_screen.dart';
+import '../../constants/colors.dart';
+import '../../constants/text_styles.dart';
+import '../../widgets/custom_button.dart';
+import '../home/home_screen.dart';
 
-class EnterOTPScreen extends StatefulWidget {
+class OtpVerificationScreen extends StatefulWidget {
   final String phoneNumber;
 
-  const EnterOTPScreen({Key? key, required this.phoneNumber}) : super(key: key);
+  const OtpVerificationScreen({super.key, required this.phoneNumber});
 
   @override
-  State<EnterOTPScreen> createState() => _EnterOTPScreenState();
+  State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
 }
 
-class _EnterOTPScreenState extends State<EnterOTPScreen> {
+class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   final List<TextEditingController> _controllers = List.generate(
     4,
     (index) => TextEditingController(),
@@ -25,8 +25,9 @@ class _EnterOTPScreenState extends State<EnterOTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.background,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
@@ -44,7 +45,9 @@ class _EnterOTPScreenState extends State<EnterOTPScreen> {
               const SizedBox(height: 16),
               Text(
                 'We sent a verification code to\n${widget.phoneNumber}',
-                style: AppTextStyles.bodyMedium,
+                style: AppTextStyles.bodyMedium.copyWith(
+                  color: AppColors.textPrimary,
+                ),
               ),
               const SizedBox(height: 48),
               Row(

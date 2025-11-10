@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../constants/colors.dart';
-import '../constants/text_styles.dart';
-import '../widgets/custom_button.dart';
-import 'enter_number_screen.dart';
+import '../../constants/colors.dart';
+import '../../constants/text_styles.dart';
+import '../../widgets/custom_button.dart';
+import '../auth/phone_number_screen.dart';
 
-class GetStartedScreen extends StatelessWidget {
-  const GetStartedScreen({Key? key}) : super(key: key);
+class OnboardingScreen extends StatelessWidget {
+  const OnboardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class GetStartedScreen extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [
               AppColors.background,
-              AppColors.background.withOpacity(0.8),
+              AppColors.background.withValues(alpha: 0.8),
             ],
           ),
         ),
@@ -33,7 +33,7 @@ class GetStartedScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                     image: const DecorationImage(
                       image: NetworkImage(
-                        'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800',
+                        'https://images.unsplash.com/photo-1653106587625-e27944832833?w=800',
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -97,7 +97,7 @@ class GetStartedScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const EnterNumberScreen(),
+                              builder: (context) => const PhoneNumberScreen(),
                             ),
                           );
                         },

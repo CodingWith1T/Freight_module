@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:freight_front/main.dart';
 
 void main() {
-  testWidgets('Get started screen loads', (WidgetTester tester) async {
+  testWidgets('Onboarding screen loads', (WidgetTester tester) async {
     await tester.pumpWidget(const ShippingApp());
 
     expect(find.text('Smart Shipping\nMade Simple'), findsOneWidget);

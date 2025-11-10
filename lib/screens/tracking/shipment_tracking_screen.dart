@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../constants/colors.dart';
-import '../constants/text_styles.dart';
-import '../models/shipment.dart';
-import '../widgets/status_timeline.dart';
-import '../widgets/custom_button.dart';
+import '../../constants/colors.dart';
+import '../../constants/text_styles.dart';
+import '../../models/shipment.dart';
+import '../../widgets/status_timeline.dart';
+import '../../widgets/custom_button.dart';
 
-class TrackingDetailScreen extends StatelessWidget {
+class ShipmentTrackingScreen extends StatelessWidget {
   final Shipment shipment;
 
-  const TrackingDetailScreen({Key? key, required this.shipment})
-    : super(key: key);
+  const ShipmentTrackingScreen({super.key, required this.shipment});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background.withValues(alpha: 0.8),
       body: SafeArea(
         child: Column(
           children: [
@@ -37,10 +37,18 @@ class TrackingDetailScreen extends StatelessWidget {
       child: Row(
         children: [
           IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.textPrimary,
+            ),
             onPressed: () => Navigator.pop(context),
           ),
-          const Text('Tracking Shipment', style: AppTextStyles.bodyLarge),
+          Text(
+            'Tracking Shipment',
+            style: AppTextStyles.bodyLarge.copyWith(
+              color: AppColors.textPrimary,
+            ),
+          ),
         ],
       ),
     );
@@ -51,7 +59,7 @@ class TrackingDetailScreen extends StatelessWidget {
       height: 280,
       margin: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        color: AppColors.cardDark,
+        color: AppColors.primary,
         borderRadius: BorderRadius.circular(24),
         image: DecorationImage(
           image: const NetworkImage(
@@ -59,7 +67,7 @@ class TrackingDetailScreen extends StatelessWidget {
           ),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
-            Colors.black.withOpacity(0.3),
+            Colors.black.withValues(alpha: 0.3),
             BlendMode.darken,
           ),
         ),
@@ -130,7 +138,7 @@ class TrackingDetailScreen extends StatelessWidget {
                     Text(
                       shipment.fromAddress ?? shipment.from,
                       style: AppTextStyles.bodyMedium.copyWith(
-                        color: Colors.white,
+                        color: AppColors.textPrimary,
                         fontSize: 12,
                       ),
                     ),
@@ -147,7 +155,7 @@ class TrackingDetailScreen extends StatelessWidget {
                     Text(
                       shipment.toAddress ?? shipment.to,
                       style: AppTextStyles.bodyMedium.copyWith(
-                        color: Colors.white,
+                        color: AppColors.textPrimary,
                         fontSize: 12,
                       ),
                     ),
@@ -168,7 +176,7 @@ class TrackingDetailScreen extends StatelessWidget {
                     Text(
                       shipment.placedDate,
                       style: AppTextStyles.bodyMedium.copyWith(
-                        color: Colors.white,
+                        color: AppColors.textPrimary,
                       ),
                     ),
                   ],
@@ -183,7 +191,7 @@ class TrackingDetailScreen extends StatelessWidget {
                     Text(
                       shipment.estimatedDate,
                       style: AppTextStyles.bodyMedium.copyWith(
-                        color: Colors.white,
+                        color: AppColors.textPrimary,
                       ),
                     ),
                   ],
@@ -198,7 +206,7 @@ class TrackingDetailScreen extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 20,
-                backgroundColor: AppColors.primary.withOpacity(0.2),
+                backgroundColor: AppColors.primary.withValues(alpha: 0.2),
                 child: const Icon(
                   Icons.person,
                   color: AppColors.primary,
@@ -212,9 +220,9 @@ class TrackingDetailScreen extends StatelessWidget {
                   children: [
                     Text('Delivery Partner', style: AppTextStyles.caption),
                     const Text(
-                      'Michael Johnson',
+                      'Raju Rastogi',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.textPrimary,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -224,12 +232,12 @@ class TrackingDetailScreen extends StatelessWidget {
               IconButton(
                 icon: const Icon(
                   Icons.chat_bubble_outline,
-                  color: Colors.white,
+                  color: AppColors.primary,
                 ),
                 onPressed: () {},
               ),
               IconButton(
-                icon: const Icon(Icons.phone, color: Colors.white),
+                icon: const Icon(Icons.phone, color: AppColors.primary),
                 onPressed: () {},
               ),
             ],
@@ -257,7 +265,7 @@ class RouteLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.primary
+      ..color = AppColors.background
       ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -273,7 +281,7 @@ class RouteLinePainter extends CustomPainter {
     canvas.drawPath(path, paint);
 
     final circlePaint = Paint()
-      ..color = AppColors.primary
+      ..color = AppColors.success
       ..style = PaintingStyle.fill;
 
     canvas.drawCircle(

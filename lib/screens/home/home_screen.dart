@@ -130,9 +130,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ShipmentTrackingScreen(
-                              shipment: _shipments[index],
-                            ),
+                            builder:
+                                (context) => ShipmentTrackingScreen(
+                                  shipment: _shipments[index],
+                                ),
                           ),
                         );
                       },
@@ -224,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: BorderRadius.circular(16),
             ),
             child: const TextField(
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: AppColors.textPrimary),
               decoration: InputDecoration(
                 hintText: 'Search Shipping',
                 hintStyle: TextStyle(color: AppColors.textSecondary),

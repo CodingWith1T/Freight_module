@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../constants/colors.dart';
 import '../../constants/text_styles.dart';
 import '../../widgets/custom_button.dart';
-import '../home/home_screen.dart';
+import '../onboarding/user_type_screen.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   final String phoneNumber;
@@ -30,7 +30,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
         backgroundColor: AppColors.background,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios, color: AppColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -65,12 +65,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: AppColors.textPrimary,
                       ),
                       decoration: InputDecoration(
                         counterText: '',
                         filled: true,
-                        fillColor: AppColors.cardDark,
+                        fillColor: AppColors.cardBackground,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
                           borderSide: BorderSide.none,
@@ -113,10 +113,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               CustomButton(
                 text: 'Verify',
                 onPressed: () {
-                  Navigator.pushAndRemoveUntil(
+                  Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
-                    (route) => false,
+                    MaterialPageRoute(
+                      builder: (context) => const UserTypeScreen(),
+                    ),
                   );
                 },
               ),

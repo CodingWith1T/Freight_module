@@ -53,8 +53,9 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   vertical: 4,
                 ),
                 decoration: BoxDecoration(
-                  color: AppColors.cardDark,
+                  color: AppColors.cardBackground,
                   borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: AppColors.border),
                 ),
                 child: Row(
                   children: [
@@ -69,27 +70,27 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                           const SizedBox(width: 8),
                           Text(
                             _selectedCountryCode,
-                            style: AppTextStyles.bodyLarge,
+                            style: AppTextStyles.bodyLarge.copyWith(
+                              color: AppColors.textPrimary,
+                            ),
                           ),
                           const SizedBox(width: 4),
                           const Icon(
                             Icons.arrow_drop_down,
-                            color: Colors.white,
+                            color: AppColors.textPrimary,
                           ),
                         ],
                       ),
                     ),
-                    Container(
-                      width: 1,
-                      height: 30,
-                      color: Colors.grey.shade700,
-                    ),
+                    Container(width: 1, height: 30, color: AppColors.border),
                     const SizedBox(width: 16),
                     Expanded(
                       child: TextField(
                         controller: _phoneController,
                         keyboardType: TextInputType.phone,
-                        style: AppTextStyles.bodyLarge,
+                        style: AppTextStyles.bodyLarge.copyWith(
+                          color: AppColors.textPrimary,
+                        ),
                         decoration: const InputDecoration(
                           hintText: 'Phone Number',
                           hintStyle: TextStyle(color: AppColors.textSecondary),
@@ -107,10 +108,11 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => OtpVerificationScreen(
-                        phoneNumber:
-                            '$_selectedCountryCode ${_phoneController.text}',
-                      ),
+                      builder:
+                          (context) => OtpVerificationScreen(
+                            phoneNumber:
+                                '$_selectedCountryCode ${_phoneController.text}',
+                          ),
                     ),
                   );
                 },

@@ -36,7 +36,7 @@ class _BusinessInfoScreenState extends State<BusinessInfoScreen> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.maybePop(context),
         ),
       ),
       body: SafeArea(
@@ -273,33 +273,32 @@ class _BusinessInfoScreenState extends State<BusinessInfoScreen> {
           ),
           dropdownColor: AppColors.cardBackground,
           style: const TextStyle(fontSize: 16, color: AppColors.textPrimary),
-          items:
-              items.map((String item) {
-                return DropdownMenuItem<String>(
-                  value: item,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        label,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: AppColors.textSecondary,
-                        ),
-                      ),
-                      Text(
-                        item,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: AppColors.textPrimary,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
+          items: items.map((String item) {
+            return DropdownMenuItem<String>(
+              value: item,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    label,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: AppColors.textSecondary,
+                    ),
                   ),
-                );
-              }).toList(),
+                  Text(
+                    item,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: AppColors.textPrimary,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
           selectedItemBuilder: (_) {
             return items.map((String item) {
               return Column(

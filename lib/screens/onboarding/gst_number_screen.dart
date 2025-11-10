@@ -19,11 +19,10 @@ class _GSTNumberScreenState extends State<GSTNumberScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder:
-            (context) => PANNumberScreen(
-              userType: widget.userType,
-              gstNumber: _gstController.text.trim(),
-            ),
+        builder: (context) => PANNumberScreen(
+          userType: widget.userType,
+          gstNumber: _gstController.text.trim(),
+        ),
       ),
     );
   }
@@ -39,7 +38,7 @@ class _GSTNumberScreenState extends State<GSTNumberScreen> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.maybePop(context),
         ),
       ),
       body: SafeArea(

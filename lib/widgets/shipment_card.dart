@@ -9,22 +9,30 @@ class ShipmentCard extends StatelessWidget {
   final Shipment shipment;
   final VoidCallback onTap;
 
-  const ShipmentCard({
-    Key? key,
-    required this.shipment,
-    required this.onTap,
-  }) : super(key: key);
+  const ShipmentCard({super.key, required this.shipment, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
+    final bool isDelivered = shipment.status == 'Delivered';
+    final Color badgeColor = isDelivered
+        ? AppColors.success
+        : AppColors.inTransit;
+    final Color titleColor = AppColors.textPrimary;
+    final Color subtitleColor = AppColors.textSecondary;
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: shipment.status == 'Delivered' ? AppColors.primary : AppColors.cardDark,
+          color: AppColors.cardDark,
           borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: isDelivered
+                ? AppColors.primary.withValues(alpha: 0.15)
+                : Colors.transparent,
+          ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,18 +44,22 @@ class ShipmentCard extends StatelessWidget {
                   shipment.orderId,
                   style: AppTextStyles.bodyLarge.copyWith(
                     fontWeight: FontWeight.bold,
+                    color: titleColor,
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
-                    color: shipment.status == 'Delivered' ? Colors.white.withOpacity(0.2) : AppColors.inTransit,
+                    color: badgeColor.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
                     shipment.status,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: badgeColor,
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                     ),
@@ -65,9 +77,7 @@ class ShipmentCard extends StatelessWidget {
                       Text(
                         'From',
                         style: AppTextStyles.caption.copyWith(
-                          color: shipment.status == 'Delivered'
-                              ? Colors.white.withOpacity(0.7)
-                              : AppColors.textSecondary,
+                          color: subtitleColor,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -82,9 +92,7 @@ class ShipmentCard extends StatelessWidget {
                       Text(
                         'To',
                         style: AppTextStyles.caption.copyWith(
-                          color: shipment.status == 'Delivered'
-                              ? Colors.white.withOpacity(0.7)
-                              : AppColors.textSecondary,
+                          color: subtitleColor,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -106,7 +114,9 @@ class ShipmentCard extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           shipment.placedDate,
-                          style: AppTextStyles.bodyMedium.copyWith(color: Colors.white),
+                          style: AppTextStyles.bodyMedium.copyWith(
+                            color: AppColors.textPrimary,
+                          ),
                         ),
                       ],
                     ),
@@ -119,7 +129,9 @@ class ShipmentCard extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           shipment.estimatedDate,
-                          style: AppTextStyles.bodyMedium.copyWith(color: Colors.white),
+                          style: AppTextStyles.bodyMedium.copyWith(
+                            color: AppColors.textPrimary,
+                          ),
                         ),
                       ],
                     ),
@@ -135,4 +147,3 @@ class ShipmentCard extends StatelessWidget {
     );
   }
 }
-

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'screens/get_started_screen.dart';
+import 'screens/onboarding/onboarding_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +15,7 @@ void main() {
 }
 
 class ShippingApp extends StatelessWidget {
-  const ShippingApp({Key? key}) : super(key: key);
+  const ShippingApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ShippingApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFF1A1A1A),
         fontFamily: 'SF Pro Display',
       ),
-      home: const GetStartedScreen(),
+      home: const OnboardingScreen(),
     );
-  }
+}
 }

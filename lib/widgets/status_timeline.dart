@@ -8,10 +8,10 @@ class StatusTimeline extends StatelessWidget {
   final bool compact;
 
   const StatusTimeline({
-    Key? key,
+    super.key,
     required this.currentStep,
     this.compact = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 
-import '../constants/colors.dart';
-import '../constants/text_styles.dart';
-import '../widgets/custom_button.dart';
-import 'enter_otp_screen.dart';
+import '../../constants/colors.dart';
+import '../../constants/text_styles.dart';
+import '../../widgets/custom_button.dart';
+import 'otp_verification_screen.dart';
 
-class EnterNumberScreen extends StatefulWidget {
-  const EnterNumberScreen({Key? key}) : super(key: key);
+class PhoneNumberScreen extends StatefulWidget {
+  const PhoneNumberScreen({super.key});
 
   @override
-  State<EnterNumberScreen> createState() => _EnterNumberScreenState();
+  State<PhoneNumberScreen> createState() => _PhoneNumberScreenState();
 }
 
-class _EnterNumberScreenState extends State<EnterNumberScreen> {
+class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
   final TextEditingController _phoneController = TextEditingController();
-  String _selectedCountryCode = '+91';
+  final String _selectedCountryCode = '+91';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.background,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios, color: AppColors.textPrimary),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -41,7 +42,9 @@ class _EnterNumberScreenState extends State<EnterNumberScreen> {
               const SizedBox(height: 16),
               Text(
                 'We will send you a verification code',
-                style: AppTextStyles.bodyMedium,
+                style: AppTextStyles.bodyMedium.copyWith(
+                  color: AppColors.textPrimary,
+                ),
               ),
               const SizedBox(height: 48),
               Container(
@@ -104,7 +107,7 @@ class _EnterNumberScreenState extends State<EnterNumberScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EnterOTPScreen(
+                      builder: (context) => OtpVerificationScreen(
                         phoneNumber:
                             '$_selectedCountryCode ${_phoneController.text}',
                       ),
